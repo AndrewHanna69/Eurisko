@@ -1,9 +1,9 @@
-const AlbumModel = require('./models/album.models');
+const AlbumModel = require('../models/album.model');
 
 const albumService = {
-  async addAlbum(name, description, showNbTracks) {
+  async addAlbum(name, description, showNbTracks, createdBy) {
     try {
-      const newAlbum = new AlbumModel( {name, description, showNbTracks} );
+      const newAlbum = new AlbumModel( {name, description, showNbTracks, createdBy} );
       const savedAlbum = await newAlbum.save();
       return savedAlbum;
     } catch (error) {
@@ -11,9 +11,9 @@ const albumService = {
     }
   },
 
-  async updateAlbum(albumId, albumData) {
+  async updateAlbum(albumId, updatedBy) {
     try {
-      const updatedAlbum = await AlbumModel.findByIdAndUpdate(albumId, albumData, { new: true });
+      const updatedAlbum = await AlbumModel.findByIdAndUpdate(albumId, updatedBy, { new: true });
       return updatedAlbum;
     } catch (error) {
       throw new Error(`Error updating album: ${error.message}`);

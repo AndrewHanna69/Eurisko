@@ -2,6 +2,27 @@ const mongoose = require('mongoose');
 const CategoryService = require('./services/category.service');
 const AlbumService = require('./services/album.service');
 const SongService = require('./services/song.service');
+const albumRoutes = require('./routes/album.routes');
+const categoryRoutes = require('./routes/category.routes');
+const songRoutes = require('./routes/song.routes');
+const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
+
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+app.use('/api', albumRoutes);
+app.use('/api', categoryRoutes);
+app.use('/api', songRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 async function connect (){
 try {

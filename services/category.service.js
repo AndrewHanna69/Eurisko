@@ -1,10 +1,11 @@
-const CategoryModel = require('./models/category.model');
+const CategoryModel = require('../models/category.model');
 
-const addCategory = async (name, description) => {
+const addCategory = async (name, description, createdBy) => {
     try {
       const newCategory = new CategoryModel({
         name,
-        description
+        description,
+        createdBy,
       });
 
       await newCategory.save();

@@ -1,5 +1,5 @@
-const SongModel = require('./models/song.model');
-const albumService = require('./album.service');
+const SongModel = require('../models/song.model');
+const albumService = require('../services/album.service');
 
 const songService = {
   async addSong(name, singer, categoryId, albumId) {
@@ -32,7 +32,7 @@ const songService = {
   
   async getAlbumById(albumId) {
     try {
-      const album = await albumService.findById(albumId);
+      const album = await albumService.getAlbum(albumId);
       if (!album) {
         throw new Error('Album not found');
       }
